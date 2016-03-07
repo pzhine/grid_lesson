@@ -88,18 +88,7 @@ gulp.task('pages:reset', function(cb) {
 });
 
 // Compile Sass into CSS
-// In production, the CSS is compressed
-gulp.task('sass', function() {
-  var uncss = $.if(isProduction, $.uncss({
-    html: ['src/**/*.html'],
-    ignore: [
-      new RegExp('^meta\..*'),
-      new RegExp('^\.is-.*')
-    ]
-  }));
-
-  var minifycss = $.if(isProduction, $.minifyCss());
-
+gulp.task('sass', function() {  
   return gulp.src('src/assets/scss/app.scss')
     .pipe($.sourcemaps.init())
     .pipe($.sass({
@@ -109,37 +98,22 @@ gulp.task('sass', function() {
     .pipe($.autoprefixer({
       browsers: COMPATIBILITY
     }))
-    .pipe(uncss)
-    .pipe(minifycss)
     .pipe($.if(!isProduction, $.sourcemaps.write()))
     .pipe(gulp.dest('dist/assets/css'));
 });
 
 // Combine JavaScript into one file
-// In production, the file is minified
 gulp.task('javascript', function() {
-  var uglify = $.if(isProduction, $.uglify()
-    .on('error', function (e) {
-      console.log(e);
-    }));
-
   return gulp.src(PATHS.javascript)
     .pipe($.sourcemaps.init())
     .pipe($.concat('app.js'))
-    .pipe(uglify)
     .pipe($.if(!isProduction, $.sourcemaps.write()))
     .pipe(gulp.dest('dist/assets/js'));
 });
 
 // Copy images to the "dist" folder
-// In production, the images are compressed
 gulp.task('images', function() {
-  var imagemin = $.if(isProduction, $.imagemin({
-    progressive: true
-  }));
-
   return gulp.src('src/assets/img/**/*')
-    .pipe(imagemin)
     .pipe(gulp.dest('dist/assets/img'));
 });
 
