@@ -1,4 +1,4 @@
-# Grid lesson
+# [Grids in Foundation](https://docs.google.com/presentation/d/1VQhT536mDW5-rVyNKLb9r_fLKpbU90ENBXi53xOxjzY/edit?usp=sharing)
 
 Download and install Sublime Text editor and Node, then run:
 ```
