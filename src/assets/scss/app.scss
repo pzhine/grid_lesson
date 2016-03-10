@@ -37,3 +37,18 @@
 @include foundation-title-bar;
 @include foundation-tooltip;
 @include foundation-top-bar;
+
+body {
+  margin: 15px;
+}
+
+div {
+  border: 2px solid #0000FF;
+  text-align: center;
+  padding: 3px;
+  margin: 3px 0;
+
+  &.row {
+    border: 2px dotted #FF0000;
+  }
+}
